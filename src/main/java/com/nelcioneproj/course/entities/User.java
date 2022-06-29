@@ -3,9 +3,19 @@ package com.nelcioneproj.course.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "users")
 public class User implements Serializable{//obs: o obj trafege na rede seja gravado em arquivo etc
 	private static final long serialVersionUID = 1L;
 	
+	@Id //primary key
+	@GeneratedValue(strategy = GenerationType.IDENTITY)//key autoincrement
 	private Long id;
 	private String name;
 	private String email;
