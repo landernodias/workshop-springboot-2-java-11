@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "tb_user")
 public class User implements Serializable{//obs: o obj trafege na rede seja gravado em arquivo etc
@@ -29,6 +31,7 @@ public class User implements Serializable{//obs: o obj trafege na rede seja grav
 	//OneToMany
 	
 	//association
+	@JsonIgnore
 	@OneToMany(mappedBy = "client")
 	private List<Order> orders = new ArrayList<>(); //instancia a coleção
 	
