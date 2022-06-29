@@ -1,16 +1,19 @@
 package com.nelcioneproj.course.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "users")
+@Table(name = "tb_user")
 public class User implements Serializable{//obs: o obj trafege na rede seja gravado em arquivo etc
 	private static final long serialVersionUID = 1L;
 	
@@ -21,6 +24,13 @@ public class User implements Serializable{//obs: o obj trafege na rede seja grav
 	private String email;
 	private String phone;
 	private String password;
+	
+	//Um para muitos
+	//OneToMany
+	
+	//association
+	@OneToMany(mappedBy = "client")
+	private List<Order> orders = new ArrayList<>(); //instancia a coleção
 	
 	public User() {
 	}
@@ -73,6 +83,10 @@ public class User implements Serializable{//obs: o obj trafege na rede seja grav
 		this.password = password;
 	}
 
+	public List<Order> getOrders() {
+		return orders;
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
