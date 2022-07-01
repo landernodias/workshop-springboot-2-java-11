@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Profile;
 
 import com.nelcioneproj.course.entities.Order;
 import com.nelcioneproj.course.entities.User;
+import com.nelcioneproj.course.entities.enums.OrderStatus;
 import com.nelcioneproj.course.repositories.OrderRepository;
 import com.nelcioneproj.course.repositories.UserRepository;
 
@@ -32,9 +33,9 @@ public class TestConfig implements CommandLineRunner{ //instancia o banco de dad
 		User u2 = new User(null, "Alex Green", "alex@gmail.com", "97777777", "123456");
 		
 		//date: ISO 8601 : padrão UTC TimeZone GMT
-		Order o1 = new Order(null, Instant.parse("2022-06-29T16:05:07Z"), u1);
-		Order o2 = new Order(null, Instant.parse("2022-07-29T03:41:19Z"), u2);
-		Order o3 = new Order(null, Instant.parse("2022-07-29T21:21:14Z"), u1);
+		Order o1 = new Order(null, Instant.parse("2022-06-29T16:05:07Z"), OrderStatus.PAID, u1);
+		Order o2 = new Order(null, Instant.parse("2022-07-29T03:41:19Z"), OrderStatus.WATTING_PAYMENT, u2);
+		Order o3 = new Order(null, Instant.parse("2022-07-29T21:21:14Z"), OrderStatus.WATTING_PAYMENT, u1);
 		
 		userRepository.saveAll(Arrays.asList(u1, u2));
 		orderRepository.saveAll(Arrays.asList(o1, o2, o3));
