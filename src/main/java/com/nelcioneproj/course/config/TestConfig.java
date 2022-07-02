@@ -10,10 +10,12 @@ import org.springframework.context.annotation.Profile;
 
 import com.nelcioneproj.course.entities.Category;
 import com.nelcioneproj.course.entities.Order;
+import com.nelcioneproj.course.entities.Product;
 import com.nelcioneproj.course.entities.User;
 import com.nelcioneproj.course.entities.enums.OrderStatus;
 import com.nelcioneproj.course.repositories.CategoryRepository;
 import com.nelcioneproj.course.repositories.OrderRepository;
+import com.nelcioneproj.course.repositories.ProductRepository;
 import com.nelcioneproj.course.repositories.UserRepository;
 
 @Configuration
@@ -30,6 +32,9 @@ public class TestConfig implements CommandLineRunner{ //instancia o banco de dad
 	@Autowired
 	private CategoryRepository categoryRepository;
 	
+	@Autowired
+	private ProductRepository productRepository;
+	
 	//executa quando a aplicação é iniciada
 	@Override
 	public void run(String... args) throws Exception {//seeding do banco de dados
@@ -38,7 +43,14 @@ public class TestConfig implements CommandLineRunner{ //instancia o banco de dad
 		Category cat2 = new Category(null, "Books");
 		Category cat3 = new Category(null, "Computers");
 		
+		Product p1 = new Product(null, "The Lord of the Rings", "Lorem ipsum dolor sit amet, consectetor", 90.5, "");
+		Product p2 = new Product(null, "Smart TV", "NUlla eu imperdiet purus. maecanas ante.", 2190.0, "");
+		Product p3 = new Product(null, "Macbook Pro", "Nam eleifend maximus tortot, at mollis", 1250.0, "");
+		Product p4 = new Product(null, "PC Gamer", "Donec aliquet odio ac rhoncus cursus.", 1200.0, "");
+		Product p5 = new Product(null, "Rails for Dumies", "Cras fringella canvallis sem vel faucibus", 100.99, "");
+		
 		categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
+		productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
 		
 		User u1 = new User(null, "Maria Brown", "maria@gmail.com", "98888888", "123456");
 		User u2 = new User(null, "Alex Green", "alex@gmail.com", "97777777", "123456");
