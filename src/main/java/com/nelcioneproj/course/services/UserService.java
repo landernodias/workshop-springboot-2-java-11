@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.nelcioneproj.course.entities.User;
 import com.nelcioneproj.course.repositories.UserRepository;
+import com.nelcioneproj.course.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class UserService {
@@ -22,7 +23,7 @@ public class UserService {
 	//recuperar um dado pelo Id
 	public User findById(Long id) {
 		Optional<User> obj = repository.findById(id);
-		return obj.get(); 
+		return obj.orElseThrow(() -> new ResourceNotFoundException(id)); 
 	}
 	
 	//save User
